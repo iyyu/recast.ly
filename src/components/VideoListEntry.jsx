@@ -19,7 +19,7 @@ class VideoListEntry extends React.Component {
         </div>
         <div className="media-body">
           <div className="video-list-entry-title" onClick={this.onEntryClick.bind(this)}>{this.props.video.snippet.title}</div>
-          <div className="video-list-entry-detail"></div>
+          <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
         </div>
       </div>      
     );
