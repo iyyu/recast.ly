@@ -27,7 +27,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.sourceVid} />
           </div>
           <div className="col-md-5">
-            <VideoList onVideoEntryClick={this.onVideoEntryClick} videos={window.exampleVideoData} />
+            <VideoList onVideoEntryClick={this.onVideoEntryClick} videos={this.state.videos} />
           </div>
         </div>
       </div>

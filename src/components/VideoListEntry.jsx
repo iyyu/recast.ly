@@ -1,30 +1,14 @@
-class VideoListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  onEntryClick() {
-    for (var i = 0; i < 5; i++) {
-      if (window.exampleVideoData[i].id.videoId === this.props.video.id.videoId) {
-        window.exampleVideoData.unshift(window.exampleVideoData.splice(i, 1)[0]);
-        break;
-      }
-    }
-    ReactDOM.render(<App/>, document.getElementById('app'));
-  }
-  render() {
-    return (
-      <div className="video-list-entry media">
-        <div className="media-left media-middle">
-          <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
-        </div>
-        <div className="media-body">
-            <div className="video-list-entry-title" onClick={() => {this.props.onVideoEntryClick(this.props.video)}}>{this.props.video.snippet.title}</div>
-          <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
-        </div>
-      </div>      
-    );
-  }
-}
+var VideoListEntry = (props) => (
+  <div className="video-list-entry media">
+    <div className="media-left media-middle">
+      <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
+    </div>
+    <div className="media-body">
+        <div className="video-list-entry-title" onClick={() => { props.onVideoEntryClick(props.video); }}>{props.video.snippet.title}</div>
+      <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+    </div>
+  </div>      
+);
 
 
   
