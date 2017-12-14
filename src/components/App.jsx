@@ -3,12 +3,17 @@ class App extends React.Component {
     super(props);
     
     this.state = {
-      sourceVid: window.exampleVideoData[0]
+      sourceVid: window.exampleVideoData[0],
+      videos: window.exampleVideoData
     };
+    
+    this.onVideoEntryClick = this.onVideoEntryClick.bind(this);
   }
   
-  onVideoEntryClick(video) {
-    this.setState({sourceVid: video});
+  onVideoEntryClick(arg) {
+    console.log(arg);
+    console.log('passed function down to video entry to', this);
+    this.setState({sourceVid: arg});
   }
   
   render() {
@@ -19,7 +24,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={window.exampleVideoData[0]} />
+            <VideoPlayer video={this.state.sourceVid} />
           </div>
           <div className="col-md-5">
             <VideoList onVideoEntryClick={this.onVideoEntryClick} videos={window.exampleVideoData} />
