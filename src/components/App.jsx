@@ -4,23 +4,27 @@ class App extends React.Component {
     
     this.state = {
       sourceVid: window.exampleVideoData[0],
-      videos: window.exampleVideoData
+      videos: window.exampleVideoData,
+      searchStr: 'cats'
     };
     
     this.onVideoEntryClick = this.onVideoEntryClick.bind(this);
+    this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
   }
   
   onVideoEntryClick(arg) {
-    console.log(arg);
-    console.log('passed function down to video entry to', this);
     this.setState({sourceVid: arg});
+  }
+  
+  onSearchButtonClick(options) {
+    this.setState({videos: window.searchYouTube(options, callback)});
   }
   
   render() {
     return (
       <div>
         <nav className="navbar">
-          <Search />
+          <Search searchStr={this.state.searchStr} onSearchButtonClick={this.onSearchButtonClick} />
         </nav>
         <div className="row">
           <div className="col-md-7">
