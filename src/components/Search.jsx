@@ -1,9 +1,11 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" searchStr={props.searchStr} />
+    <input className="form-control" type="text" 
+    value={$('.form-control').val()}
+    onChange={props.handleChange} />
     <button className="btn hidden-sm-down" onClick={() => {
-      // props.onSearchButtonClick({ key: window.YOUTUBE_API_KEY, query: props.searchStr, max: 5 }); 
-      console.log(props.searchStr);
+      props.onSearchButtonClick({ key: window.YOUTUBE_API_KEY, query: props.value, max: 5 }); 
+      console.log(props.value);
       
     }}>
       <span className="glyphicon glyphicon-search"></span>

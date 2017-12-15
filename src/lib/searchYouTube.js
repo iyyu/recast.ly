@@ -10,11 +10,11 @@ var searchYouTube = (options, callback) => {
     success: function (data) {
       // clear App's state's videos array w setState from onSearchButtonClick method
       //populate it
-      
-      window.exampleVideoData = [];
-      data.items.forEach(function(item) {
-        window.exampleVideoData.push(item);
+      data.items.forEach((item) => {
+        callback.call(this, item);
       });
+      console.log('videos before state change', data.items); 
+      
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error

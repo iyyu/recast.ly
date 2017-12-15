@@ -5,26 +5,43 @@ class App extends React.Component {
     this.state = {
       sourceVid: window.exampleVideoData[0],
       videos: window.exampleVideoData,
-      searchStr: 'cats'
+      value: ''
     };
+    
+    this.gatherVideos = [];
     
     this.onVideoEntryClick = this.onVideoEntryClick.bind(this);
     this.onSearchButtonClick = this.onSearchButtonClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleAJAX = this.handleAJAX.bind(this);
   }
   
   onVideoEntryClick(arg) {
     this.setState({sourceVid: arg});
   }
   
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  
+  handleAJAX(vid) {
+    var videosSoFar = this.state.videos.concat(vid);
+    this.setState({ videos: videosSoFar });
+    
+  }
+  
   onSearchButtonClick(options) {
-    this.setState({videos: window.searchYouTube(options, callback)});
+    this.setState({videos: []});
+    window.searchYouTube(options, this.handleAJAX);
+    console.log('videos was changed');
+    console.log('videos after state change', this.state.videos);
   }
   
   render() {
     return (
       <div>
         <nav className="navbar">
-          <Search searchStr={this.state.searchStr} onSearchButtonClick={this.onSearchButtonClick} />
+          <Search onChange= {this.handleChange} value={this.state.value} onSearchButtonClick={this.onSearchButtonClick} />
         </nav>
         <div className="row">
           <div className="col-md-7">
