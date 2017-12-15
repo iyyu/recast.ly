@@ -8,12 +8,7 @@ var searchYouTube = (options, callback) => {
     data: ajaxInput,
     dataType: 'jsonp',
     success: function (data) {
-      // clear App's state's videos array w setState from onSearchButtonClick method
-      //populate it
-      data.items.forEach((item) => {
-        callback.call(this, item);
-      });
-      console.log('videos before state change', data.items); 
+      callback.call(this, data.items);
       
     },
     error: function (data) {
